@@ -26,6 +26,20 @@ class UpdateProductQuantity extends Command
      */
     public function handle()
     {
-        // Logic to update quantity of the products
+        $productId = $this->argument('id');
+        $newQuantity = $this->argument('quantity');
+
+        // Find product by ID
+        $product = Product::find($productId);
+
+        if (!$product) {
+            $this->error('Product not found!');
+            return;
+        }
+
+        // Update product quantity
+        $product->update(['quantity' => $newQuantity]);
+
+        $this->info("Product ID {$productId} updated to quantity: {$newQuantity}");
     }
 }

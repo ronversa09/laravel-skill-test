@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('body');
             $table->string('image')->nullable();
             $table->boolean('del_flag')->default(false);
+            $table->integer('quantity')->default(0);
             $table->timestamps();
     
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

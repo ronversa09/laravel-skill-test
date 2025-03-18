@@ -23,6 +23,14 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+
+        $request->validate([
+            'title' => 'required|string|max:255|unique:products,title',
+            'body' => 'required|string',
+            'quantity' => 'required|integer|min:1',
+            'image' => 'nullable|image',
+        ]);
+
         $product = new Product($request->all());
         if ($request->hasFile('image')) {
             $product->image = $request->file('image')->store('images', 'ftp');
@@ -48,6 +56,14 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
+
+        $request->validate([
+            'title' => 'required|string|max:255|unique:products,title,' . $id,
+            'body' => 'required|string',
+            'quantity' => 'required|integer|min:1',
+            'image' => 'nullable|image',
+        ]);
+        
         $product = Product::find($id);
         if ($request->hasFile('image')) {
             $product->image = $request->file('image')->store('images', 'ftp');

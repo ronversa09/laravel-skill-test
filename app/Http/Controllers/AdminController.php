@@ -60,17 +60,19 @@ class AdminController extends Controller
 
     public function updateProduct(Request $request, $id)
     {
-        // $request->validate([
-        //     'title' => 'required|string|max:255',
-        //     'body' => 'required|string',
-        //     'user_id' => 'required|exists:users,id',
-        //     'image' => 'nullable|image',
-        // ]);
+        $request->validate([
+            'title' => 'required|string|max:255|unique:products,title,' . $id,
+            'body' => 'required|string',
+            'user_id' => 'required|exists:users,id',
+            'quantity' => 'required|integer|min:1',
+            'image' => 'nullable|image',
+        ]);
 
         $product = Product::findOrFail($id);
         $product->title = $request->input('title');
         $product->body = $request->input('body');
         $product->user_id = $request->input('user_id');
+        $product->quantity = $request->input('quantity');
 
         if ($request->hasFile('image')) {
             $product->image = $request->file('image')->store('images', 'public');
@@ -84,12 +86,13 @@ class AdminController extends Controller
     public function saveProduct(Request $request)
     {
 
-        // $request->validate([
-        //     'title' => 'required|string|max:255',
-        //     'body' => 'required|string',
-        //     'user_id' => 'required|exists:users,id',
-        //     'image' => 'nullable|image',
-        // ]);
+        $request->validate([
+            'title' => 'required|string|max:255|unique:products,title',
+            'body' => 'required|string',
+            'user_id' => 'required|exists:users,id',
+            'quantity' => 'required|integer|min:1',
+            'image' => 'nullable|image',
+        ]);
 
         $product = new Product($request->all());
         if ($request->hasFile('image')) {

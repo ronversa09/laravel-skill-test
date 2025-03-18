@@ -27,6 +27,10 @@
                 <textarea name="body" id="body" style="width: 100%; padding: 8px; box-sizing: border-box;" required></textarea>
             </div>
             <div style="margin-bottom: 15px;">
+                <label for="quantity" style="display: block; margin-bottom: 5px;">Quantity:</label>
+                <input type="number" name="quantity" id="quantity" style="width: 100%; padding: 8px; box-sizing: border-box;" required>
+            </div>
+            <div style="margin-bottom: 15px;">
                 <label for="image" style="display: block; margin-bottom: 5px;">Image:</label>
                 <input type="file" name="image" id="image" style="width: 100%; padding: 8px; box-sizing: border-box;">
             </div>
