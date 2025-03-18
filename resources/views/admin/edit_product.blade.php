@@ -5,7 +5,6 @@
         <h1 style="text-align: center;">Edit Product</h1>
         <form action="{{ route('admin.updateProduct', $product->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
-            @method('PUT')
             <div style="margin-bottom: 15px;">
                 <label for="user_id" style="display: block; margin-bottom: 5px;">Select User:</label>
                 <select name="user_id" id="user_id" style="width: 100%; padding: 8px; box-sizing: border-box;">

@@ -23,7 +23,7 @@ Route::middleware(['auth', CheckAdmin::class])->group(function () {
         Route::get('/add-products/{id}', [AdminController::class, 'addProduct'])->name('addProduct');
         Route::post('/save-products', [AdminController::class, 'saveProduct'])->name('saveProduct');
         Route::get('/edit-product/{id}', [AdminController::class, 'editProduct'])->name('editProduct');
-        Route::get('/update-product/{id}', [AdminController::class, 'updateProduct'])->name('updateProduct');
+        Route::post('/update-product/{id}', [AdminController::class, 'updateProduct'])->name('updateProduct');
     });
 });
 

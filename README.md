@@ -21,6 +21,17 @@
     Admin users will have access to all users and their products.
     Guests will have its own products
 
+## FORM VALIDATION
+**Products**
+    'title' => 'required|string|max:255|unique:products,title,' . $id,
+    'body' => 'required|string',
+    'user_id' => 'required|exists:users,id',
+    'quantity' => 'required|integer|min:1',
+    'image' => 'nullable|image'
+**Users**
+    'name' => 'required|string|max:255',
+    'email' => 'required|string|email|max:255|unique:users',
+    'password' => 'required|string|min:8|confirmed',
 
 ## Guiding Principles for Coding with Ease and Efficiency
 
