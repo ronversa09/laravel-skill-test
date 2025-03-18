@@ -26,3 +26,4 @@ Route::middleware(['auth', CheckAdmin::class])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::resource('products', ProductController::class);
 });
+

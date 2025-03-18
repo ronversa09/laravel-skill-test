@@ -2,7 +2,7 @@
 
 @section('content')
     <div style="position: relative;">
-        <form action="{{ route('admin.logout') }}" method="POST" style="position: absolute; top: 0; right: 0;">
+        <form action="{{ route('admin.logout') }}" method="POST" style="position: absolute; top: 10px; right: 10px;">
             @csrf
             <button type="submit" style="padding: 10px 20px; background-color: #dc3545; color: white; border: none; border-radius: 5px; cursor: pointer;">Logout</button>
         </form>
