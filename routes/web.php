@@ -6,11 +6,15 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Auth\AdminAuthController;
 
-Route::get('admin/register', [AdminAuthController::class, 'showRegisterForm'])->name('admin.showRegisterForm');
-Route::post('admin/register', [AdminAuthController::class, 'register'])->name('admin.register');
-Route::get('admin/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.showLoginForm');
-Route::post('admin/login', [AdminAuthController::class, 'login'])->name('admin.login');
-Route::post('admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
+Route::get('/', function () {
+    return redirect()->route('admin.showLoginForm');
+});
+
+Route::get('/register', [AdminAuthController::class, 'showRegisterForm'])->name('admin.showRegisterForm');
+Route::post('/register', [AdminAuthController::class, 'register'])->name('admin.register');
+Route::get('/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.showLoginForm');
+Route::post('/login', [AdminAuthController::class, 'login'])->name('admin.login');
+Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 
 Route::middleware(['auth', CheckAdmin::class])->group(function () {
     Route::prefix('admin')->name('admin.')->group(function () {
