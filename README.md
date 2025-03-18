@@ -22,15 +22,6 @@
     Guests will have its own products
 
 
-run php artisan migrate
-run php artisan serve
-browse 127.0.0.1 it will redirect to login page
-register an admin thru button become an admin
-check the checkbox is Admin if user is an admin else it will be a guest
-to login, use your email address and password
-once login and you which to logout, click logout button at the top portion
-so on so forth...
-
 ## Guiding Principles for Coding with Ease and Efficiency
 
 1. **Enjoy the Coding**: Coding can be challenging, but embrace the process and find joy in solving problems. Every challenge you overcome makes you a better developer.
