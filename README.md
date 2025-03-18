@@ -11,6 +11,13 @@
 9. **Leverage Available Resources**: If you're stuck, seek help from ChatGPT, Google, Stack Overflow, or other trusted sources. Sometimes, a different perspective is all you need.
 10. **Break Tasks Into Manageable Pieces**: Carefully read the requirements, break them into smaller tasks, and tackle them one at a time. Completing small steps efficiently leads to a solid final product.
 
-## API Documentation
+## CRON JOB
+* * * * * php /var/www/html/laravel-skill-test/artisan schedule:run >> /dev/null 2>&1
 
-We use Postman for API documentation and testing. You can find the Postman collection [here](link-to-postman-collection).
+## API Integration
+
+This project integrates with two third-party APIs for adding products:
+- [FakeStore API](https://fakestoreapi.com/)
+- [Platzi Fake API](https://fakeapi.platzi.com/)
+
+The integration is done through an interface (`ProductInterface`) which allows switching between the two APIs easily.

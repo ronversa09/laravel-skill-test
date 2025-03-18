@@ -19,10 +19,16 @@ class ProductTest extends TestCase
             'user_id' => $user->id,
             'title' => 'Test Product',
             'body' => 'This is a test product.',
+            'quantity' => 50,
+            'image' => 'test_image.jpg'
         ]);
 
         $this->assertDatabaseHas('products', [
             'title' => 'Test Product',
+            'body' => 'This is a test product.',
+            'quantity' => 50,
+            'image' => 'test_image.jpg',
+            'user_id' => $user->id,
         ]);
     }
 
@@ -34,6 +40,7 @@ class ProductTest extends TestCase
 
         $foundProduct = Product::find($product->id);
 
+        $this->assertNotNull($foundProduct);
         $this->assertEquals($product->title, $foundProduct->title);
     }
 

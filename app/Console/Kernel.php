@@ -1,8 +1,36 @@
-protected $commands = [
-    \App\Console\Commands\UpdateProductQuantity::class,
-];
+<?php
 
-protected function schedule(Schedule $schedule)
+namespace App\Console;
+
+use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+
+class Kernel extends ConsoleKernel
 {
-    $schedule->command('product:delete-low-quantity')->mondays()->at('00:00');
+    protected $commands = [
+        \App\Console\Commands\UpdateProductQuantity::class,
+    ];
+
+    /**
+     * Define the application's command schedule.
+     *
+     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+     * @return void
+     */
+    protected function schedule(Schedule $schedule)
+    {
+        $schedule->command('products:delete-low-quantity')->mondays()->at('00:00');
+    }
+
+    /**
+     * Register the commands for the application.
+     *
+     * @return void
+     */
+    protected function commands()
+    {
+        $this->load(__DIR__.'/Commands');
+
+        require base_path('routes/console.php');
+    }
 }

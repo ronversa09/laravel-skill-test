@@ -23,19 +23,21 @@ class DeleteLowQuantityProducts extends Command
 
     /**
      * Execute the console command.
+     *
+     * @return int
      */
     public function handle()
     {
-
         $count = Product::where('quantity', '<', 10)->count();
         if ($count == 0) {
             $this->info('No low-stock products to delete.');
-            return;
+            return 0; // Success status code
         }
 
         // Delete products with quantity less than 10
         Product::where('quantity', '<', 10)->delete();
 
         $this->info("Deleted {$count} products with low stock.");
+        return 0; // Success status code
     }
 }

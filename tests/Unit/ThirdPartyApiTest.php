@@ -3,42 +3,80 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
-use App\Services\FakeApiPlatziService;
-use App\Services\FakeStoreApiService;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Http\Client\Response;
+use App\Models\Product;
+use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ThirdPartyApiTest extends TestCase
 {
-    public function test_add_product_with_fake_api_platzi_service()
-    {
-        Http::fake([
-            'https://fakeapi.platzi.com/products' => Http::response(['id' => 1, 'title' => 'Test Product'], 201),
-        ]);
+    use RefreshDatabase;
 
-        $service = new FakeApiPlatziService();
-        $response = $service->addProduct([
+    public function test_add_product_to_first_api()
+    {
+        $user = User::factory()->create();
+
+        $productData = [
+            'user_id' => $user->id,
             'title' => 'Test Product',
             'body' => 'This is a test product.',
+            'quantity' => 50,
+            'image' => 'test_image.jpg'
+        ];
+
+        // Mock the HTTP request to the first API
+        Http::fake([
+            'https://api.first.com/products' => Http::response(['success' => true], 200),
         ]);
 
-        $this->assertEquals(201, $response->status());
-        $this->assertEquals('Test Product', $response->json()['title']);
+        // Make the HTTP request to the first API
+        $response = Http::post('https://api.first.com/products', $productData);
+
+        // Assert that the request was successful
+        $this->assertTrue($response->json('success'));
+
+        // Assert that the product was created in the database
+        $product = Product::create($productData);
+        $this->assertDatabaseHas('products', [
+            'title' => 'Test Product',
+            'body' => 'This is a test product.',
+            'quantity' => 50,
+            'image' => 'test_image.jpg',
+            'user_id' => $user->id,
+        ]);
     }
 
-    public function test_add_product_with_fake_store_api_service()
+    public function test_add_product_to_second_api()
     {
-        Http::fake([
-            'https://fakestoreapi.com/products' => Http::response(['id' => 1, 'title' => 'Test Product'], 201),
-        ]);
+        $user = User::factory()->create();
 
-        $service = new FakeStoreApiService();
-        $response = $service->addProduct([
+        $productData = [
+            'user_id' => $user->id,
             'title' => 'Test Product',
             'body' => 'This is a test product.',
+            'quantity' => 50,
+            'image' => 'test_image.jpg'
+        ];
+
+        // Mock the HTTP request to the second API
+        Http::fake([
+            'https://api.second.com/products' => Http::response(['success' => true], 200),
         ]);
 
-        $this->assertEquals(201, $response->status());
-        $this->assertEquals('Test Product', $response->json()['title']);
+        // Make the HTTP request to the second API
+        $response = Http::post('https://api.second.com/products', $productData);
+
+        // Assert that the request was successful
+        $this->assertTrue($response->json('success'));
+
+        // Assert that the product was created in the database
+        $product = Product::create($productData);
+        $this->assertDatabaseHas('products', [
+            'title' => 'Test Product',
+            'body' => 'This is a test product.',
+            'quantity' => 50,
+            'image' => 'test_image.jpg',
+            'user_id' => $user->id,
+        ]);
     }
 }

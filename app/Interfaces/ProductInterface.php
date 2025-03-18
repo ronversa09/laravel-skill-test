@@ -6,5 +6,5 @@ use Illuminate\Http\Client\Response;
 
 interface ProductInterface
 {
-    public function addProduct(array $data): Response;
+    public function addProduct(array $productData): Response;
 }
