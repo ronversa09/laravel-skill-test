@@ -6,8 +6,10 @@
 4. **Organize Your Project Structure**: Keep admin templates separate from non-admin ones. A well-structured project makes debugging and future modifications much easier..
 5. **Style Matters**: Even basic CSS can make a difference. Aim for a clean and visually appealing interface to enhance user experience..
 6. **Implement Authentication**: Coding for long hours without rest can lead to headaches, stress, or even burnout. Step away, refresh, and come back with a clear mind.
-7. **Leverage Available Resources**: If you're stuck, seek help from ChatGPT, Google, Stack Overflow, or other trusted sources. Sometimes, a different perspective is all you need.
-8. **Break Tasks Into Manageable Pieces**: Carefully read the requirements, break them into smaller tasks, and tackle them one at a time. Completing small steps efficiently leads to a solid final product.
+7. **Take Breaks and Avoid Burnout**: Coding for long hours without rest can lead to headaches, stress, or even burnout. Step away, refresh, and come back with a clear mind.
+8. **Think Out Loud**: Whether it's talking to your paper, monitor, or even a wall, verbalizing your thoughts can help clarify ideas and solutions.
+9. **Leverage Available Resources**: If you're stuck, seek help from ChatGPT, Google, Stack Overflow, or other trusted sources. Sometimes, a different perspective is all you need.
+10. **Break Tasks Into Manageable Pieces**: Carefully read the requirements, break them into smaller tasks, and tackle them one at a time. Completing small steps efficiently leads to a solid final product.
 
 ## API Documentation
 
