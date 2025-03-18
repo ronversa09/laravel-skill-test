@@ -1,3 +1,36 @@
+## How to Use the Application?
+1. **Setup the Database**: Run the database migrations to set up the necessary tables:
+    php artisan migrate
+2. **Start the Application**: Launch the Laravel development server:
+    php artisan serve
+3. **Access the Application**: Open your browser and go to:
+    (http://127.0.0.1:8000)
+    You will be redirected to the login page.
+4. **Register an Admin Account**:
+    Click the "Become an Admin" button on the registration page.
+    Fill out the required details.
+    Check the "Is Admin" checkbox if you want the user to have admin privileges.
+    ✅ Checked → User is an Admin
+    ❌ Unchecked → User is a Guest
+5.  **Login to the System**:
+    Use your registered email address and password to log in.
+    If the credentials are correct, you will be redirected to the user list.
+6. **Logout**:
+    To log out, click the "Logout" button at the top of the page.
+7. **Additional Features**
+    Admin users will have access to all users and their products.
+    Guests will have its own products
+
+
+run php artisan migrate
+run php artisan serve
+browse 127.0.0.1 it will redirect to login page
+register an admin thru button become an admin
+check the checkbox is Admin if user is an admin else it will be a guest
+to login, use your email address and password
+once login and you which to logout, click logout button at the top portion
+so on so forth...
+
 ## Guiding Principles for Coding with Ease and Efficiency
 
 1. **Enjoy the Coding**: Coding can be challenging, but embrace the process and find joy in solving problems. Every challenge you overcome makes you a better developer.
