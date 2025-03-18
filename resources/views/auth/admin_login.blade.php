@@ -18,7 +18,7 @@
             <button type="submit" style="width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 5px; margin-bottom: 10px;">Login</button>
         </form>
         <div style="text-align: center;">
-            <a href="{{ route('admin.showRegisterForm') }}" style="display: inline-block; width: 100%; padding: 10px; background-color: #28a745; color: white; border: none; border-radius: 5px; text-decoration: none;">Become an Admin</a>
+            <a href="{{ route('admin.showRegisterForm') }}" style="display: inline-block; width: 97%; padding: 10px; background-color: #28a745; color: white; border: none; border-radius: 5px; text-decoration: none;">Become an Admin</a>
         </div>
     </div>
 @endsection
