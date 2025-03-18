@@ -34,7 +34,13 @@ class ProductController extends Controller
             'image' => $request->input('image'),
         ]);
 
-        return response()->json($response->json(), $response->status());
+        if ($response->successful()) {
+            $product = Product::create($request->all());
+            event(new ProductCreated($product));
+            return response()->json($response->json(), $response->status());
+        } else {
+            return response()->json(['error' => 'Failed to add product'], 500);
+        }
     }
 
     public function create()

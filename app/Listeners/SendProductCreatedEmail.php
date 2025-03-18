@@ -9,17 +9,8 @@ use Illuminate\Support\Facades\Mail;
 
 class SendProductCreatedEmail
 {
-    /**
-     * Create the event listener.
-     */
-    public function __construct()
-    {
-        //
-    }
+    public function __construct(){}
 
-    /**
-     * Handle the event.
-     */
     public function handle(ProductCreated $event): void
     {
         $product = $event->product;
