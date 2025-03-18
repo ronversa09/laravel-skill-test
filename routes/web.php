@@ -10,14 +10,16 @@ Route::get('admin/register', [AdminAuthController::class, 'showRegisterForm'])->
 Route::post('admin/register', [AdminAuthController::class, 'register'])->name('admin.register');
 Route::get('admin/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.showLoginForm');
 Route::post('admin/login', [AdminAuthController::class, 'login'])->name('admin.login');
+Route::post('admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 
 Route::middleware(['auth', CheckAdmin::class])->group(function () {
     Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/users', [AdminController::class, 'userList'])->name('userList');
-        Route::get('/products', [AdminController::class, 'productList'])->name('productList');
-        Route::post('/products', [AdminController::class, 'addProduct'])->name('addProduct');
-        Route::put('/products/{id}', [AdminController::class, 'editProduct'])->name('editProduct');
-        Route::delete('/products/{id}', [AdminController::class, 'deleteProduct'])->name('deleteProduct');
+        Route::post('/delete-user/{id}', [AdminController::class, 'deleteUser'])->name('deleteUser');
+        Route::get('/add-products/{id}', [AdminController::class, 'addProduct'])->name('addProduct');
+        Route::post('/save-products', [AdminController::class, 'saveProduct'])->name('saveProduct');
+        Route::get('/edit-product/{id}', [AdminController::class, 'editProduct'])->name('editProduct');
+        Route::get('/update-product/{id}', [AdminController::class, 'updateProduct'])->name('updateProduct');
     });
 });
 

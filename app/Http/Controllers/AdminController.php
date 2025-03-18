@@ -5,14 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Events\ProductCreated;
 
 class AdminController extends Controller
 {
-    public function userList()
-    {
-        $users = User::with('products')->get();
-        return view('admin.user_list', compact('users'));
-    }
 
     public function editUser($id)
     {
@@ -40,23 +37,74 @@ class AdminController extends Controller
         return redirect()->route('admin.userList')->with('success', 'User deleted successfully.');
     }
 
-    public function productList()
-    {
-        $products = Product::all();
-        return view('admin.product_list', compact('products'));
-    }
-
-    public function addProduct(Request $request)
+    public function userList()
     {
         $users = User::with('products')->get();
-        return view('product.create', compact('users'));
+        return view('admin.user_list', compact('users'));
+    }
+
+    public function addProduct(Request $request, $id)
+    {
+        $users = ($id)? User::findOrFail($id) : User::with('products')->get();
+        return view('admin.create_product', compact('users'));
     }
 
     public function editProduct(Request $request, $id)
     {
-        // Edit product logic
+        
+        $product = Product::find($id);
+        $users = User::with('products')->get();
+        return view('admin.edit_product', compact('product', 'users'));
+        
     }
 
+    public function updateProduct(Request $request, $id)
+    {
+        // $request->validate([
+        //     'title' => 'required|string|max:255',
+        //     'body' => 'required|string',
+        //     'user_id' => 'required|exists:users,id',
+        //     'image' => 'nullable|image',
+        // ]);
+
+        $product = Product::findOrFail($id);
+        $product->title = $request->input('title');
+        $product->body = $request->input('body');
+        $product->user_id = $request->input('user_id');
+
+        if ($request->hasFile('image')) {
+            $product->image = $request->file('image')->store('images', 'public');
+        }
+
+        $product->save();
+
+        return redirect()->route('admin.userList')->with('success', 'Product updated successfully.');
+    }
+
+    public function saveProduct(Request $request)
+    {
+
+        // $request->validate([
+        //     'title' => 'required|string|max:255',
+        //     'body' => 'required|string',
+        //     'user_id' => 'required|exists:users,id',
+        //     'image' => 'nullable|image',
+        // ]);
+
+        $product = new Product($request->all());
+        if ($request->hasFile('image')) {
+            $product->image = $request->file('image')->store('images', 'ftp');
+        }
+        $product->user_id = $request->input('user_id');
+        $product->save();
+
+        event(new ProductCreated($product));
+
+        return redirect()->route('admin.userList');
+    }
+
+    
+    
     public function deleteProduct($id)
     {
         $product = Product::find($id);

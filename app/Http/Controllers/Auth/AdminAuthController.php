@@ -45,9 +45,15 @@ class AdminAuthController extends Controller
 
             $user = Auth::user();
             return redirect()->route('admin.userList', compact('user'));
-            
+
         }
 
         return redirect()->route('admin.showLoginForm')->withErrors(['error' => 'Invalid credentials.']);
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('admin.showLoginForm')->with('success', 'Logged out successfully.');
     }
 }
