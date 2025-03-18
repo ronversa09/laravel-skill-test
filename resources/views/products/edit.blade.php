@@ -3,7 +3,7 @@
 @section('content')
     <div style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px;">
         <h1 style="text-align: center;">Edit Product</h1>
-        <form action="{{ route('products.update', $product->id) }}" method="GET" enctype="multipart/form-data">
+        <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div style="margin-bottom: 15px;">
@@ -16,7 +16,7 @@
             </div>
             <div style="margin-bottom: 15px;">
                 <label for="quantity" style="display: block; margin-bottom: 5px;">Quantity:</label>
-                <input type="number" name="quantity" id="quantity" style="width: 100%; padding: 8px; box-sizing: border-box;" required>
+                <input type="number" name="quantity" id="quantity" value="{{ $product->quantity }}" style="width: 100%; padding: 8px; box-sizing: border-box;" required>
             </div>
             <div style="margin-bottom: 15px;">
                 <label for="image" style="display: block; margin-bottom: 5px;">Image:</label>
