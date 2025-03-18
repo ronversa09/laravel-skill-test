@@ -96,7 +96,7 @@ class AdminController extends Controller
 
         $product = new Product($request->all());
         if ($request->hasFile('image')) {
-            $product->image = $request->file('image')->store('images', 'ftp');
+            $product->image = $request->file('image')->store('images', 'public');
         }
         $product->user_id = $request->input('user_id');
         $product->save();
