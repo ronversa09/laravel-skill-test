@@ -22,16 +22,16 @@
     Guests will have its own products
 
 ## FORM VALIDATION
-**Products**
-    'title' => 'required|string|max:255|unique:products,title,' . $id,
-    'body' => 'required|string',
-    'user_id' => 'required|exists:users,id',
-    'quantity' => 'required|integer|min:1',
-    'image' => 'nullable|image'
-**Users**
-    'name' => 'required|string|max:255',
-    'email' => 'required|string|email|max:255|unique:users',
-    'password' => 'required|string|min:8|confirmed',
+1. **Products**
+    1. 'title' => 'required|string|max:255|unique:products,title,' . $id,
+    2. 'body' => 'required|string',
+    3. 'user_id' => 'required|exists:users,id',
+    4. 'quantity' => 'required|integer|min:1',
+    5. 'image' => 'nullable|image'
+2. **Users**
+    1. 'name' => 'required|string|max:255',
+    2. 'email' => 'required|string|email|max:255|unique:users',
+    3. 'password' => 'required|string|min:8|confirmed',
 
 ## Guiding Principles for Coding with Ease and Efficiency
 
